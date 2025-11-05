@@ -142,6 +142,3 @@ CREATE TABLE Entrega (
     FOREIGN KEY (IdEnderEc) REFERENCES Endereco(IdEnder)
 );
 
-
-
-
