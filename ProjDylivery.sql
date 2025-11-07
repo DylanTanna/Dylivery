@@ -1,7 +1,7 @@
+CREATE SCHEMA Dylivery;
 SET search_path TO Dylivery;
 
-
-CREATE TABLE Endereco (
+CREATE TABLE Endereco(
 
     IdEnder INT PRIMARY KEY,
     Rua VARCHAR(256) NOT NULL,
@@ -142,3 +142,75 @@ CREATE TABLE Entrega (
     FOREIGN KEY (IdEnderEc) REFERENCES Endereco(IdEnder)
 );
 
+<<<<<<< HEAD
+--Inserções testes
+
+INSERT INTO Endereco (IdEnder, Rua, Bairro, Numero, Cep, PontoRef) VALUES
+(1, 'Rua das Flores', 'Centro', 120, '12345-000', 'Próximo ao mercado'),
+(2, 'Av. Brasil', 'Jardim América', 450, '98765-200', NULL),
+(3, 'Rua Projetada 5', 'Vila Nova', NULL, '44444-100', 'Perto do posto'),
+(4, 'Rua A', 'Bairro B', 10, '22222-000', NULL), 
+(5, 'Av. Santos', 'Industrial', 899, '33333-555', 'Galpão azul'),
+(6, 'Rua Alfa', 'Beta', 55, '55555-888', NULL);
+
+INSERT INTO Cliente (IdCliente, IdEnderClient, CtCriacaoClient, CtAttClient) VALUES
+(1, 1, NOW(), NOW()),
+(2, 2, NOW(), NOW()),
+(3, NULL, NOW(), NOW());
+
+INSERT INTO Estabelecimento (IdEc, NomeEc, DocEc, IdEnderEc, CtCriacaoEc, CtAttEc) VALUES
+(1, 'Lanchonete Bom Sabor', '1234567890001', 5, NOW(), NOW()),
+(2, 'Pizzaria Massa Fina', '9876543210001', 6, NOW(), NOW());
+
+INSERT INTO Entregador (IdEntregador, Veiculo, DocEntregador, Saldo, CtCriacaoEntregador, CtAttEntregador) VALUES
+(1, 'Moto Honda CG160', '11122233344', 10.00, NOW(), NOW()),
+(2, 'Bike Elétrica', '55566677788', 0.00, NOW(), NOW()),
+(3, NULL, '22233344455', 5.50, NOW(), NOW()); 
+
+INSERT INTO RegistroEntregador (IdEntregador, IdRgEntregador, Data, Status, Hora) VALUES
+(1, 1, CURRENT_DATE, 'Inicio', '08:00'),
+(1, 2, CURRENT_DATE, 'Fim', '12:30'),
+(2, 1, CURRENT_DATE, 'Inicio', '09:15');
+
+INSERT INTO RegistroEc (IdEc, IdRgEc, Data, Hora, Status) VALUES
+(1, 1, CURRENT_DATE, '08:00', 'Aberto'),
+(1, 2, CURRENT_DATE, '23:00', 'Fechado'),
+(2, 1, CURRENT_DATE, '17:00', 'Aberto');
+
+INSERT INTO Produto (IdProd, NomeProd, ValorProd, QntdProd, IdEc, CtCriacaoProd, CtAttProd) VALUES
+(1, 'X-Burger', 15.00, 50, 1, NOW(), NOW()),
+(2, 'Batata Frita Média', 10.00, 100, 1, NOW(), NOW()),
+(3, 'Pizza Grande Calabresa', 45.00, 20, 2, NOW(), NOW()),
+(4, 'Refrigerante Lata', 6.50, 200, 1, NOW(), NOW());
+
+INSERT INTO Pacote (IdPact, ValorTotalPact, CtCriacaoPact, CtAttPact) VALUES
+(1, 31.50, NOW(), NOW()), -- X-Burger + Refrigerante
+(2, 45.00, NOW(), NOW()),
+(3, 10.00, NOW(), NOW()), -- Só batata
+(4, 00.00, NOW(), NOW()); -- Pacote criado mas sem valor ainda
+
+INSERT INTO PactProd (IdPact, IdProd, QntdPP) VALUES
+(1, 1, 1),
+(1, 4, 1),
+(2, 3, 1),
+(3, 2, 1);
+
+INSERT INTO Entrega (
+    IdEntregador, IdPact, Taxa, Status, IdCliente, IdEnderClient, IdEnderEc,
+    CtCriacaoEntrega, CtAttEntrega
+) VALUES
+-- Entrega normal em rota
+(1, 1, 7.00, 'EmRota', 1, 1, 5, NOW(), NOW()),
+
+-- Entrega cancelada
+(2, 2, 8.00, 'Cancelado', 2, 2, 6, NOW() - INTERVAL '1 day', NOW()),
+
+-- Entrega com problema
+(1, 3, 5.00, 'Problema', 3, 4, 5, NOW(), NOW()),
+
+-- Entrega sem pacote finalizado (valor NULL no pacote)
+(3, 4, 9.00, 'EmRota', 1, 1, 6, NOW(), NOW());
+
+select * from entrega;
+=======
+>>>>>>> 2f66a3b75941839e8dc1424af83fa75eab3756a5
