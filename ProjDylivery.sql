@@ -211,7 +211,6 @@ INSERT INTO Entrega (
 -- Entrega sem pacote finalizado (valor NULL no pacote)
 (3, 4, 9.00, 'EmRota', 1, 1, 6, NOW(), NOW());
 
-select * from entrega;select * from entrega;
 select * from entrega;
 =======
 >>>>>>> 2f66a3b75941839e8dc1424af83fa75eab3756a5
